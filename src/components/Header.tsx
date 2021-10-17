@@ -1,5 +1,12 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, Button, useColorMode } from '@chakra-ui/react'
 
 export const Header = () => {
-  return <Flex>Olá</Flex>
+  const { colorMode, toggleColorMode } = useColorMode()
+  return (
+    <header>
+      <Button onClick={toggleColorMode}>
+        Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+      </Button>
+    </header>
+  )
 }

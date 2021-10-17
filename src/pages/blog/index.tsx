@@ -13,7 +13,6 @@ interface PostsProps {
 const Blog = ({ posts }: PostsProps) => {
   return (
     <Box>
-      {console.log(posts)}
       {posts.map(({ frontMatter, slug }, index) => {
         const { title } = frontMatter
 
