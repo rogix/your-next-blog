@@ -1,16 +1,13 @@
 import { Header } from '../components/Header'
 
-import Link from 'next/link'
-
 import type { NextPage } from 'next'
+import { Greeting } from '../components/Greeting'
 
 const Home: NextPage = () => {
   return (
     <>
       <Header />
-      <Link href="/blog">
-        <a>Blog</a>
-      </Link>
+      <Greeting />
     </>
   )
 }

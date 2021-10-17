@@ -5,6 +5,9 @@ import SyntaxHighlighter from 'react-syntax-highlighter'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
+import { Header } from '../../components/Header'
+import { Box, Container, Heading } from '@chakra-ui/react'
+
 import type { Frontmatter } from '../../types/frontmatter'
 
 type Props = {
@@ -15,11 +18,13 @@ type Props = {
 
 export const getStaticPaths = async () => {
   const files = fs.readdirSync(path.join('posts'))
+
   const paths = files.map(filename => ({
     params: {
       slug: filename.replace('.mdx', ''),
     },
   }))
+
   return {
     paths,
     fallback: false,
@@ -44,10 +49,13 @@ export const getStaticProps = async ({ params: { slug } }: Props) => {
 
 const BlogPost = ({ frontMatter: { title }, mdxSource }: Props) => {
   return (
-    <div className="mt-4">
-      <h1>{title}</h1>
-      <MDXRemote {...mdxSource} components={{ SyntaxHighlighter }} />
-    </div>
+    <Box>
+      <Header />
+      <Container maxW="container.md" mt="20">
+        <Heading>{title}</Heading>
+        <MDXRemote {...mdxSource} components={{ SyntaxHighlighter }} />
+      </Container>
+    </Box>
   )
 }
 

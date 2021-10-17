@@ -1,10 +1,11 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { Box } from '@chakra-ui/react'
+import { Box, Text, Heading, Container, Flex } from '@chakra-ui/react'
 import Link from 'next/link'
 
 import type { Frontmatter } from '../../types/frontmatter'
+import { Header } from '../../components/Header'
 
 interface PostsProps {
   posts: Frontmatter[]
@@ -12,17 +13,24 @@ interface PostsProps {
 
 const Blog = ({ posts }: PostsProps) => {
   return (
-    <Box>
-      {posts.map(({ frontMatter, slug }, index) => {
-        const { title } = frontMatter
+    <>
+      <Header />
+      <Container mt="10" maxW="container.sm">
+        <Flex align="center" justify="center" flexDir="column">
+          <Heading pb="10px">Blog</Heading>
+          <Text>Let us talk about it</Text>
+        </Flex>
+        {posts.map(({ frontMatter, slug }, index) => {
+          const { title } = frontMatter
 
-        return (
-          <Link href={'/blog/' + slug} passHref key={index}>
-            <Box as="h1">{title}</Box>
-          </Link>
-        )
-      })}
-    </Box>
+          return (
+            <Link href={'/blog/' + slug} passHref key={index}>
+              <a>{title}</a>
+            </Link>
+          )
+        })}
+      </Container>
+    </>
   )
 }
 
