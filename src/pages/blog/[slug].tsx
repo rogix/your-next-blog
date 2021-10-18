@@ -9,11 +9,17 @@ import { Header } from '../../components/Header'
 import { Box, Container, Heading } from '@chakra-ui/react'
 
 import type { Frontmatter } from '../../types/frontmatter'
+import CodeBlock from '../../../lib/codeBlock'
 
 type Props = {
   params: Frontmatter
   frontMatter: Frontmatter['frontMatter']
   mdxSource: MDXRemoteSerializeResult
+}
+
+const components = {
+  pre: props => <div {...props} />,
+  code: CodeBlock,
 }
 
 export const getStaticPaths = async () => {
@@ -53,7 +59,7 @@ const BlogPost = ({ frontMatter: { title }, mdxSource }: Props) => {
       <Header />
       <Container maxW="container.md" mt="20">
         <Heading>{title}</Heading>
-        <MDXRemote {...mdxSource} components={{ SyntaxHighlighter }} />
+        <MDXRemote {...mdxSource} components={components} />
       </Container>
     </Box>
   )

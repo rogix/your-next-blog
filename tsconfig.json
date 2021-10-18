@@ -22,7 +22,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/pages/blog/[slug].tsx"
+    "src/pages/blog/[slug].tsx",
+    "lib/codeBlock.js",
   ],
   "exclude": [
     "node_modules"
