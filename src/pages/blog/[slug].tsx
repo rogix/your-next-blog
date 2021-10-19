@@ -1,68 +1,51 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-import SyntaxHighlighter from 'react-syntax-highlighter'
-import { serialize } from 'next-mdx-remote/serialize'
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { getMDXComponent } from 'mdx-bundler/client'
 
 import { Header } from '../../components/Header'
 import { Box, Container, Heading } from '@chakra-ui/react'
 
 import type { Frontmatter } from '../../types/frontmatter'
 import CodeBlock from '../../../lib/codeBlock'
+import { useMemo } from 'react'
+import { getAllFrontmatter, getMdxBySlug } from '../../../lib/mdx'
 
 type Props = {
   params: Frontmatter
-  frontMatter: Frontmatter['frontMatter']
-  mdxSource: MDXRemoteSerializeResult
+  frontmatter: Frontmatter
+  code: any
 }
 
-const components = {
-  pre: props => <div {...props} />,
-  code: CodeBlock,
-}
+const BlogPost = ({ frontmatter, code }: Props) => {
+  const Component = useMemo(() => getMDXComponent(code), [code])
 
-export const getStaticPaths = async () => {
-  const files = fs.readdirSync(path.join('posts'))
-
-  const paths = files.map(filename => ({
-    params: {
-      slug: filename.replace('.mdx', ''),
-    },
-  }))
-
-  return {
-    paths,
-    fallback: false,
-  }
-}
-
-export const getStaticProps = async ({ params: { slug } }: Props) => {
-  const markdownWithMeta = fs.readFileSync(
-    path.join('posts', slug + '.mdx'),
-    'utf-8',
-  )
-  const { data: frontMatter, content } = matter(markdownWithMeta)
-  const mdxSource = await serialize(content)
-  return {
-    props: {
-      frontMatter,
-      slug,
-      mdxSource,
-    },
-  }
-}
-
-const BlogPost = ({ frontMatter: { title }, mdxSource }: Props) => {
   return (
     <Box>
       <Header />
       <Container maxW="container.md" mt="20">
-        <Heading>{title}</Heading>
-        <MDXRemote {...mdxSource} components={components} />
+        <Heading>{frontmatter.title}</Heading>
+        <Component />
       </Container>
     </Box>
   )
+}
+
+export const getStaticPaths = async () => {
+  const frontmatters = getAllFrontmatter('blog')
+
+  return {
+    paths: frontmatters.map(({ slug }) => ({ params: { slug } })),
+    fallback: false,
+  }
+}
+
+export const getStaticProps = async (context: { params: { slug: string } }) => {
+  const { frontmatter, code } = await getMdxBySlug('blog', context.params.slug)
+
+  return {
+    props: {
+      frontmatter,
+      code,
+    },
+  }
 }
 
 export default BlogPost

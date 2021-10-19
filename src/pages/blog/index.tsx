@@ -1,17 +1,15 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-import { Box, Text, Heading, Container, Flex } from '@chakra-ui/react'
+import { Text, Heading, Container, Flex } from '@chakra-ui/react'
 import Link from 'next/link'
 
 import type { Frontmatter } from '../../types/frontmatter'
 import { Header } from '../../components/Header'
+import { getAllFrontmatter } from '../../../lib/mdx'
 
-interface PostsProps {
-  posts: Frontmatter[]
+interface Props {
+  frontmatters: Frontmatter[]
 }
 
-const Blog = ({ posts }: PostsProps) => {
+const Blog = ({ frontmatters }: Props) => {
   return (
     <>
       <Header />
@@ -20,12 +18,10 @@ const Blog = ({ posts }: PostsProps) => {
           <Heading pb="10px">Blog</Heading>
           <Text>Let us talk about it</Text>
         </Flex>
-        {posts.map(({ frontMatter, slug }, index) => {
-          const { title } = frontMatter
-
+        {frontmatters.map((frontmatter, index) => {
           return (
-            <Link href={'/blog/' + slug} passHref key={index}>
-              <a>{title}</a>
+            <Link href={'/blog/' + frontmatter.slug} passHref key={index}>
+              <a>{frontmatter.title}</a>
             </Link>
           )
         })}
@@ -34,24 +30,12 @@ const Blog = ({ posts }: PostsProps) => {
   )
 }
 
-export const getStaticProps = async () => {
-  const files = fs.readdirSync(path.join('posts'))
-  const posts = files.map(filename => {
-    const markdownWithMeta = fs.readFileSync(
-      path.join('posts', filename),
-      'utf-8',
-    )
-    const { data: frontMatter } = matter(markdownWithMeta)
-    return {
-      frontMatter,
-      slug: filename.split('.')[0],
-    }
-  })
-  return {
-    props: {
-      posts,
-    },
-  }
+export function getStaticProps() {
+  const frontmatters = getAllFrontmatter('blog')
+  const sortedFrontmatters = frontmatters.sort(
+    (a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)),
+  )
+  return { props: { frontmatters: sortedFrontmatters } }
 }
 
 export default Blog
