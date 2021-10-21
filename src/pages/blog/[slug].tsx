@@ -1,12 +1,12 @@
+import { useMemo } from 'react'
 import { getMDXComponent } from 'mdx-bundler/client'
 
 import { Header } from '../../components/Header'
 import { Box, Container, Heading } from '@chakra-ui/react'
 
 import type { Frontmatter } from '../../types/frontmatter'
-import CodeBlock from '../../../lib/codeBlock'
-import { useMemo } from 'react'
 import { getAllFrontmatter, getMdxBySlug } from '../../../lib/mdx'
+import { components } from '../../components/MDXComponents'
 
 type Props = {
   params: Frontmatter
@@ -21,8 +21,10 @@ const BlogPost = ({ frontmatter, code }: Props) => {
     <Box>
       <Header />
       <Container maxW="container.md" mt="20">
-        <Heading>{frontmatter.title}</Heading>
-        <Component />
+        <Heading as="h1" mb="6">
+          {frontmatter.title}
+        </Heading>
+        <Component components={components as any} />
       </Container>
     </Box>
   )
