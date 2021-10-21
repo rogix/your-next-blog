@@ -8,6 +8,7 @@ import remarkSlug from 'remark-slug'
 import { remarkMdxCodeMeta } from 'remark-mdx-code-meta'
 
 import type { Frontmatter } from '../src/types/frontmatter'
+import CodeBlock from './codeBlock'
 
 const ROOT_PATH = process.cwd()
 export const DATA_PATH = path.join(ROOT_PATH, 'data')
