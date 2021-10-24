@@ -6,7 +6,7 @@ import { Box, Container, Heading } from '@chakra-ui/react'
 
 import type { Frontmatter } from '../../types/frontmatter'
 import { getAllFrontmatter, getMdxBySlug } from '../../../lib/mdx'
-import { components } from '../../components/MDXComponents'
+import { MDXcomponents } from '../../components/MDXComponents'
 
 type Props = {
   params: Frontmatter
@@ -24,7 +24,7 @@ const BlogPost = ({ frontmatter, code }: Props) => {
         <Heading as="h1" mb="6">
           {frontmatter.title}
         </Heading>
-        <Component components={components as any} />
+        <Component components={MDXcomponents as any} />
       </Container>
     </Box>
   )

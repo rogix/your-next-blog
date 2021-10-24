@@ -23,7 +23,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/pages/blog/[slug].tsx",
-    "lib/codeBlock.js",
+    "lib/codeBlock.tsx",
     "lib/rehype-meta-attribute.js",
   ],
   "exclude": [
