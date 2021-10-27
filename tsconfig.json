@@ -16,15 +16,16 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "src/pages/blog/[slug].tsx",
-    "lib/codeBlock.tsx",
-    "lib/rehype-meta-attribute.js",
+    "lib/codeBlock.js",
+    "lib/rehype-meta-attribute.js"
   ],
   "exclude": [
     "node_modules"
