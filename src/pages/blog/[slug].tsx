@@ -2,11 +2,14 @@ import { useMemo } from 'react'
 import { getMDXComponent } from 'mdx-bundler/client'
 
 import { Header } from '../../components/Header'
-import { Box, Container, Heading } from '@chakra-ui/react'
+import { Box, Container, Heading, Link as BlogLink } from '@chakra-ui/react'
 
 import type { Frontmatter } from '../../types/frontmatter'
 import { getAllFrontmatter, getMdxBySlug } from '../../lib/mdx'
 import { MDXcomponents } from '../../components/MDXComponents'
+
+import Link from 'next/link'
+import { ArrowBackIcon } from '@chakra-ui/icons'
 
 type Props = {
   params: Frontmatter
@@ -20,8 +23,11 @@ const BlogPost = ({ frontmatter, code }: Props) => {
   return (
     <Box>
       <Header />
-      <Container maxW="container.md" mt="20">
-        <Heading as="h1" mb="6">
+      <Container as="article" maxW="container.md" mt="20">
+        <Link href="/blog">
+          <BlogLink textAlign="center"><ArrowBackIcon /> Back to blog</BlogLink>
+        </Link>
+        <Heading as="h1" mb="6" mt="20px">
           {frontmatter.title}
         </Heading>
         <Component components={MDXcomponents as any} />

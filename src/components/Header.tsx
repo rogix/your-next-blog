@@ -34,7 +34,7 @@ export const Header = () => {
         </Link>
       </HStack>
       <HStack>
-        <Link href="https://github.com" passHref={true}>
+        <Link href="https://github.com/rogix" passHref={true}>
           Github
         </Link>
         <IconButton
