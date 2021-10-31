@@ -31,7 +31,7 @@ const BlogPost = ({ frontmatter, code }: Props) => {
 }
 
 export const getStaticPaths = async () => {
-  const frontmatters = getAllFrontmatter('blog')
+  const frontmatters = getAllFrontmatter('posts')
 
   return {
     paths: frontmatters.map(({ slug }) => ({ params: { slug } })),
@@ -40,7 +40,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async (context: { params: { slug: string } }) => {
-  const { frontmatter, code } = await getMdxBySlug('blog', context.params.slug)
+  const { frontmatter, code } = await getMdxBySlug('posts', context.params.slug)
 
   return {
     props: {

@@ -31,7 +31,7 @@ const Blog = ({ frontmatters }: Props) => {
 }
 
 export function getStaticProps() {
-  const frontmatters = getAllFrontmatter('blog')
+  const frontmatters = getAllFrontmatter('posts')
   const sortedFrontmatters = frontmatters.sort(
     (a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)),
   )

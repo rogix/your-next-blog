@@ -10,7 +10,7 @@ import { remarkMdxCodeMeta } from 'remark-mdx-code-meta'
 import type { Frontmatter } from '../src/types/frontmatter'
 
 const ROOT_PATH = process.cwd()
-export const DATA_PATH = path.join(ROOT_PATH, 'data')
+export const DATA_PATH = path.join(ROOT_PATH, '')
 
 export const getAllFrontmatter = (fromPath: string) => {
   const PATH = path.join(DATA_PATH, fromPath)
