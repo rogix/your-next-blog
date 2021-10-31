@@ -12,7 +12,6 @@ import type { Frontmatter } from '../src/types/frontmatter'
 const ROOT_PATH = process.cwd()
 export const DATA_PATH = path.join(ROOT_PATH, 'data')
 
-// the front matter and content of all mdx files based on `docsPaths`
 export const getAllFrontmatter = (fromPath: string) => {
   const PATH = path.join(DATA_PATH, fromPath)
   const paths = glob.sync(`${PATH}/**/*.mdx`)
@@ -23,7 +22,7 @@ export const getAllFrontmatter = (fromPath: string) => {
 
     return {
       ...(data as Frontmatter),
-      slug: path.basename(filePath).replace('.mdx', ''), // file name without extension
+      slug: path.basename(filePath).replace('.mdx', ''),
       wordCount: content.split(/\s+/g).length,
       readingTime: readingTime(content),
     } as Frontmatter

@@ -12,14 +12,13 @@ const theme = extendTheme({
     body: 'Roboto',
   },
 
-  // styles: {
-  //   global: {
-  //     body: {
-  //       bg: 'gray.500',
-  //       color: 'white',
-  //     },
-  //   },
-  // },
+  styles: {
+    global: (props: { colorMode: string }) => ({
+      body: {
+        color: props.colorMode === 'dark' ? 'gray.300' : 'gray.900',
+      },
+    }),
+  },
 })
 
 export default theme
