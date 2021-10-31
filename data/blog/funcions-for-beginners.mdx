@@ -55,22 +55,47 @@ __Emphasis__
 Check this
 
 ```jsx
-  import { createStitches } from '@stitches/react';
+import { createStitches } from '@stitches/react';
 
-  export const { styled, getCssText } = createStitches({
-    theme: {
-      fonts: {
-        system: 'system-ui',
-      },
-      colors: {
-        hiContrast: 'hsl(206,10%,5%)',
-        loContrast: 'white',
-      },
-      fontSizes: {
-        1: '13px',
-        2: '15px',
-        3: '17px',
-      },
+export const { styled, getCssText } = createStitches({
+  theme: {
+    fonts: {
+      system: 'system-ui',
     },
+    colors: {
+      hiContrast: 'hsl(206,10%,5%)',
+      loContrast: 'white',
+    },
+    fontSizes: {
+      1: '13px',
+      2: '15px',
+      3: '17px',
+    },
+  },
+});
+```
+---
+
+```jsx 
+function Clock(props) {
+  const [date, setDate] = useState(new Date());
+  
+  useEffect(() => {
+    var timerID = setInterval(() => tick(), 1000);
+
+    return function cleanup() {
+      clearInterval(timerID);
+    };
   });
+
+  function tick() {
+    setDate(new Date());
+  }
+
+  return (
+    <div>
+      <h2>It is {date.toLocaleTimeString()}.</h2>
+    </div>
+  );
+}
 ```
