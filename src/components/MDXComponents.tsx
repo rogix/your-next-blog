@@ -7,7 +7,7 @@ import {
   Box,
   useColorMode,
 } from '@chakra-ui/react'
-import CodeBlock from '../../lib/codeBlock'
+import CodeBlock from '../lib/codeBlock'
 
 export const MDXcomponents = {
   h1: (props: any) => <Heading as="h1" mb="6" size="2xl" {...props} />,

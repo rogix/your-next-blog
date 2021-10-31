@@ -5,7 +5,7 @@ import { Header } from '../../components/Header'
 import { Box, Container, Heading } from '@chakra-ui/react'
 
 import type { Frontmatter } from '../../types/frontmatter'
-import { getAllFrontmatter, getMdxBySlug } from '../../../lib/mdx'
+import { getAllFrontmatter, getMdxBySlug } from '../../lib/mdx'
 import { MDXcomponents } from '../../components/MDXComponents'
 
 type Props = {

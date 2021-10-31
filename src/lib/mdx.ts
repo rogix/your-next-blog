@@ -7,7 +7,7 @@ import { bundleMDX } from 'mdx-bundler'
 import remarkSlug from 'remark-slug'
 import { remarkMdxCodeMeta } from 'remark-mdx-code-meta'
 
-import type { Frontmatter } from '../src/types/frontmatter'
+import type { Frontmatter } from '../types/frontmatter'
 
 const ROOT_PATH = process.cwd()
 export const DATA_PATH = path.join(ROOT_PATH, '')

@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import type { Frontmatter } from '../../types/frontmatter'
 import { Header } from '../../components/Header'
-import { getAllFrontmatter } from '../../../lib/mdx'
+import { getAllFrontmatter } from '../../lib/mdx'
 
 interface Props {
   frontmatters: Frontmatter[]

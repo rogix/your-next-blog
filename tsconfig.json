@@ -24,8 +24,8 @@
     "**/*.ts",
     "**/*.tsx",
     "src/pages/blog/[slug].tsx",
-    "lib/codeBlock.js",
-    "lib/rehype-meta-attribute.js"
+    "src/lib/codeBlock.js",
+    "src/lib/rehype-meta-attribute.js"
   ],
   "exclude": [
     "node_modules"
