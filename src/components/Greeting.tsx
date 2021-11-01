@@ -9,7 +9,7 @@ export const Greeting = () => {
     <Flex h="100%" w="100%" align="center" justify="center">
       <Box as="section" mt="50" textAlign="left" p="30px">
         <Heading fontSize="48px" color={colorMode === 'dark' ? "yellow.500" : '#00c2d7'} textTransform="uppercase">Hello, there!</Heading>
-        <Heading as="h3" fontSize="24px" color="white" textTransform="uppercase" >Another Next.js starter theme!</Heading>
+        <Heading as="h3" fontSize="24px" color={colorMode === 'dark' ? 'white' : 'gray.700'} textTransform="uppercase" >Another Next.js starter blog!</Heading>
         <Text
           maxW="700px"
           pt="40px"
