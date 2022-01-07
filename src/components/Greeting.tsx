@@ -17,7 +17,7 @@ export const Greeting = () => {
           fontSize="24px"
         >
           This is a starter theme created on top of Next.js to help you start
-          your blog as soon as you think of it. Feel free to clone it, download
+          your blog right now. Feel free to clone it, download
           it, modify it as you please.
         </Text>
         <Button
